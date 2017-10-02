@@ -1,4 +1,4 @@
-
+import json
 import socket
 import threading
 import requests
@@ -26,18 +26,14 @@ class ThreadedServer(object):
                 if data:
                     # Set the response to echo back the recieved data
                     response = data
-                    #client.send(response)
-                    #curl -X POST http://localhost/events/ -d
-                    url = "http://localhost/events/"
-                    payload = response
+                    #url = "http://localhost/events/"
+                    #payload = response
                     # POST with JSON
-                    import json
-                    r = requests.post(url, data=json.dumps(payload))
+                    #r = requests.post(url, data=json.dumps(payload))
 
                     print response
-                    print "----------------------------------------------"
-                    print r.text
-                    print r.status_code
+                    #print r.text
+                    #print r.status_code
 
                 else:
                     raise error('Client disconnected')
