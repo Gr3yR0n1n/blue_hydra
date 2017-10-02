@@ -1,5 +1,26 @@
 module BlueHydra
   module Pulse
+
+      @@server = '127.0.0.1'
+      @@port = 8244
+
+  def self.set(server)
+    @@server = server
+  end
+
+  def self.get
+    @@server
+  end
+
+  def self.set(port)
+    @@port = port
+  end
+
+  def self.get
+    @@port
+  end
+
+      
     def send_event(key,hash)
       if BlueHydra.pulse
         SensorEvent.send_event(key,hash)
@@ -42,8 +63,15 @@ module BlueHydra
       BlueHydra::Pulse.do_debug(json) if BlueHydra.pulse_debug
       return unless BlueHydra.pulse
       begin
+
+        @@server = BlueHydra.config["pulse_server"]
+        @@port = BlueHydra.config["pulse_port"]
+
         # write json data to result socket
-        TCPSocket.open('127.0.0.1', 8244) do |sock|
+        pulse_server = @@server  #@@config["pulse_server"]
+        pulse_port = @@port #@@config["pulse_port"]
+        #TCPSocket.open('127.0.0.1', 8244) do |sock|
+        TCPSocket.open(pulse_server, pulse_port) do |sock|
           sock.write(json)
           sock.write("\n")
           sock.flush

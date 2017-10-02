@@ -67,7 +67,9 @@ module BlueHydra
     "ui_filter_mode"     => :disabled,    # default ui filter mode to start in
     "ui_inc_filter_mac"  => [],           # inclusive ui filter by mac
     "ui_inc_filter_prox" => [],           # inclusive ui filter by prox uuid / major /minor
-    "signal_spitter"     => false         # make raw signal strength api available on localhost:1124
+    "signal_spitter"     => false,         # make raw signal strength api available on localhost:1124
+    "pulse_server"       => '127.0.0.1',
+    "pulse_port"         => 8244 
   }
 
   if File.exists?(LEGACY_CONFIG_FILE)
