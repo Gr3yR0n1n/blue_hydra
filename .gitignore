@@ -41,5 +41,4 @@ blue_hydra.json
 blue_hydra.yml
 *.log.gz
 *.corrupt
-
 .ropeproject
